@@ -1,0 +1,1072 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AF5D8399-BD19-4566-908A-52D49114FEDD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Client</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\Bin\</OutDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Bin\</OutDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Reference/Headers/;../Public/;../Default/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../Reference/Librarys/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Engine.lib;d3d11.lib;dxguid.lib;fmod_vc.lib;fmodL_vc.lib;DirectXTKd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>../../Reference/Headers/;../Public/;../Default/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>../../Reference/Librarys/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Engine.lib;d3d11.lib;dxguid.lib;fmod_vc.lib;fmodL_vc.lib;DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <FxCompile>
+      <ShaderType>Effect</ShaderType>
+    </FxCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Bin\ShaderFiles\Shader_Defines.hpp" />
+    <ClInclude Include="..\Public\AllObject.h" />
+    <ClInclude Include="..\Public\Arrow.h" />
+    <ClInclude Include="..\Public\Arrow_Center_Effect.h" />
+    <ClInclude Include="..\Public\Arrow_Effect.h" />
+    <ClInclude Include="..\Public\Arrow_Trail.h" />
+    <ClInclude Include="..\Public\Arrow_Trail_Straight.h" />
+    <ClInclude Include="..\Public\AStar.h" />
+    <ClInclude Include="..\Public\Attack_Ring.h" />
+    <ClInclude Include="..\Public\BackGround.h" />
+    <ClInclude Include="..\Public\Bar_InformationBox_UI.h" />
+    <ClInclude Include="..\Public\Bar_MakingUI.h" />
+    <ClInclude Include="..\Public\Bar_Npc.h" />
+    <ClInclude Include="..\Public\Bar_Num_UI.h" />
+    <ClInclude Include="..\Public\Bar_Present_UI.h" />
+    <ClInclude Include="..\Public\Bar_Text_UI.h" />
+    <ClInclude Include="..\Public\Bar_Waterdrop_Icon_UI.h" />
+    <ClInclude Include="..\Public\Bar_Waterdrop_Text_Number.h" />
+    <ClInclude Include="..\Public\Bomb.h" />
+    <ClInclude Include="..\Public\Bomb_Effect.h" />
+    <ClInclude Include="..\Public\Bomb_Effect_Floor.h" />
+    <ClInclude Include="..\Public\Bomb_Effect_Flow.h" />
+    <ClInclude Include="..\Public\Bomb_Effect_SSD.h" />
+    <ClInclude Include="..\Public\Bomb_Used.h" />
+    <ClInclude Include="..\Public\BossGreenShield.h" />
+    <ClInclude Include="..\Public\BossGreenShield2.h" />
+    <ClInclude Include="..\Public\BossLevelObject.h" />
+    <ClInclude Include="..\Public\Boss_Circle_Effect.h" />
+    <ClInclude Include="..\Public\Boss_Fear.h" />
+    <ClInclude Include="..\Public\Boss_Map_Size.h" />
+    <ClInclude Include="..\Public\Attack0_Effect.h" />
+    <ClInclude Include="..\Public\Attack0_Effect2.h" />
+    <ClInclude Include="..\Public\Boss_Regret.h" />
+    <ClInclude Include="..\Public\Boss_Resentment.h" />
+    <ClInclude Include="..\public\Bubble_Effect.h" />
+    <ClInclude Include="..\Public\Bullet.h" />
+    <ClInclude Include="..\Public\Bullet_Shield_Effect.h" />
+    <ClInclude Include="..\Public\Camera_RealWorld.h" />
+    <ClInclude Include="..\Public\Casting_FloorCircle.h" />
+    <ClInclude Include="..\public\Challenge_FadeInOut.h" />
+    <ClInclude Include="..\Public\Ch_Player_Meteor.h" />
+    <ClInclude Include="..\Public\Ch_Player_Meteor_Blast.h" />
+    <ClInclude Include="..\Public\Ch_Player_Meteor_Fire.h" />
+    <ClInclude Include="..\Public\Ch_Player_Meteor_Floor_Effect.h" />
+    <ClInclude Include="..\Public\Ch_Player_Meteor_Stone_Effect.h" />
+    <ClInclude Include="..\Public\Ch_Stone_Boom.h" />
+    <ClInclude Include="..\Public\Ch_Stone_Boom_Black.h" />
+    <ClInclude Include="..\Public\CircleItem.h" />
+    <ClInclude Include="..\Public\CityLand.h" />
+    <ClInclude Include="..\Public\CityObject.h" />
+    <ClInclude Include="..\Public\Client_Level_Manager.h" />
+    <ClInclude Include="..\Public\ClockHand.h" />
+    <ClInclude Include="..\Public\ClockMap.h" />
+    <ClInclude Include="..\Public\Clock_Red.h" />
+    <ClInclude Include="..\Public\Coffee_Click_Effect.h" />
+    <ClInclude Include="..\Public\Coffee_InformationBox_UI.h" />
+    <ClInclude Include="..\Public\Coffee_MakingUI.h" />
+    <ClInclude Include="..\Public\Coffee_Spark_Num.h" />
+    <ClInclude Include="..\Public\Coffee_Text_UI.h" />
+    <ClInclude Include="..\Public\Colon_Tex.h" />
+    <ClInclude Include="..\Public\ColorItem.h" />
+    <ClInclude Include="..\Public\Coltime_Number.h" />
+    <ClInclude Include="..\public\Damage_Number.h" />
+    <ClInclude Include="..\Public\DashSmoke.h" />
+    <ClInclude Include="..\Public\Dash_Distortion.h" />
+    <ClInclude Include="..\Public\DeathCircleEffect.h" />
+    <ClInclude Include="..\Public\Destruct.h" />
+    <ClInclude Include="..\Public\Effect_Ability_Shake.h" />
+    <ClInclude Include="..\Public\Endgame_Manager.h" />
+    <ClInclude Include="..\Public\Ending_Fadeio.h" />
+    <ClInclude Include="..\Public\Ending_Screen_Image.h" />
+    <ClInclude Include="..\Public\Ending_Text.h" />
+    <ClInclude Include="..\Public\Ending_Tips.h" />
+    <ClInclude Include="..\Public\Enemies_Bullet_Back.h" />
+    <ClInclude Include="..\Public\Enemies_Bullet_Effect_Round.h" />
+    <ClInclude Include="..\Public\Enemies_Bullet_Effect_Trail.h" />
+    <ClInclude Include="..\Public\Enemy.h" />
+    <ClInclude Include="..\Public\Enemy_Bullet_Ring.h" />
+    <ClInclude Include="..\Public\Enemy_Bullet_Ring2.h" />
+    <ClInclude Include="..\Public\Enemy_Bullet_Round.h" />
+    <ClInclude Include="..\public\Equipment_Manager.h" />
+    <ClInclude Include="..\Public\Event_Manager.h" />
+    <ClInclude Include="..\Public\Eve_Present_Info_UI.h" />
+    <ClInclude Include="..\Public\FadeInOut.h" />
+    <ClInclude Include="..\Public\Falling_Start_Effect.h" />
+    <ClInclude Include="..\Public\FearShadow.h" />
+    <ClInclude Include="..\Public\Fear_Beam.h" />
+    <ClInclude Include="..\Public\Fear_Beam_Final.h" />
+    <ClInclude Include="..\Public\Fear_Beam_Mouse.h" />
+    <ClInclude Include="..\Public\Fear_Beam_Red_Mouse.h" />
+    <ClInclude Include="..\Public\Fear_Bullet.h" />
+    <ClInclude Include="..\Public\Fear_Bullet_Effect.h" />
+    <ClInclude Include="..\Public\Fear_Bullet_Effect_Round.h" />
+    <ClInclude Include="..\Public\Fear_Bullet_Effect_Trail.h" />
+    <ClInclude Include="..\Public\Fear_Jump_Effect.h" />
+    <ClInclude Include="..\Public\Fear_Jump_Ring.h" />
+    <ClInclude Include="..\Public\Fear_Mine.h" />
+    <ClInclude Include="..\Public\Fear_Red.h" />
+    <ClInclude Include="..\Public\Fear_Red_Beam.h" />
+    <ClInclude Include="..\Public\Fear_Tail.h" />
+    <ClInclude Include="..\Public\Fear_Tail_Trail.h" />
+    <ClInclude Include="..\Public\Fear_Tornado.h" />
+    <ClInclude Include="..\Public\Floor_Arrow_Mesh.h" />
+    <ClInclude Include="..\Public\Floor_Arrow_Texture.h" />
+    <ClInclude Include="..\Public\Floor_Kunai_Mesh.h" />
+    <ClInclude Include="..\Public\fmod.h" />
+    <ClInclude Include="..\Public\fmod.hpp" />
+    <ClInclude Include="..\Public\fmod_codec.h" />
+    <ClInclude Include="..\Public\fmod_common.h" />
+    <ClInclude Include="..\Public\fmod_dsp.h" />
+    <ClInclude Include="..\Public\fmod_dsp_effects.h" />
+    <ClInclude Include="..\Public\fmod_errors.h" />
+    <ClInclude Include="..\Public\fmod_output.h" />
+    <ClInclude Include="..\Public\Fount.h" />
+    <ClInclude Include="..\Public\FountLucid.h" />
+    <ClInclude Include="..\Public\GameObject_Loader.h" />
+    <ClInclude Include="..\Public\GaraImsi.h" />
+    <ClInclude Include="..\public\GaraLava.h" />
+    <ClInclude Include="..\Public\Goods_Green_Text_Num.h" />
+    <ClInclude Include="..\Public\Goods_Mix_Text_Num.h" />
+    <ClInclude Include="..\Public\Goods_Text_Num.h" />
+    <ClInclude Include="..\Public\Goods_UI.h" />
+    <ClInclude Include="..\Public\Goods_Yellow_Text_Num.h" />
+    <ClInclude Include="..\Public\HeavyMelee1.h" />
+    <ClInclude Include="..\Public\House_Light_Text_Number.h" />
+    <ClInclude Include="..\Public\House_MakingUI.h" />
+    <ClInclude Include="..\Public\HpPotion.h" />
+    <ClInclude Include="..\Public\IdeaItem.h" />
+    <ClInclude Include="..\Public\InfoBox_Click_Effect.h" />
+    <ClInclude Include="..\Public\InformationBox_UI.h" />
+    <ClInclude Include="..\Public\Javelin_Projectile.h" />
+    <ClInclude Include="..\Public\Javelin_Socket.h" />
+    <ClInclude Include="..\Public\Key.h" />
+    <ClInclude Include="..\Public\Kunai.h" />
+    <ClInclude Include="..\Public\BaseTile.h" />
+    <ClInclude Include="..\Public\Kunai_Straight_Trail2.h" />
+    <ClInclude Include="..\Public\Land.h" />
+    <ClInclude Include="..\Public\LavaFlow_Center.h" />
+    <ClInclude Include="..\Public\LavaFlow_Part.h" />
+    <ClInclude Include="..\Public\LavaLand.h" />
+    <ClInclude Include="..\Public\LavaObject.h" />
+    <ClInclude Include="..\Public\Lava_Explosion.h" />
+    <ClInclude Include="..\Public\Lava_Explosion_Rect.h" />
+    <ClInclude Include="..\Public\Level_Boss_Fear.h" />
+    <ClInclude Include="..\Public\Level_Boss_Regret.h" />
+    <ClInclude Include="..\Public\Level_Boss_Resentment.h" />
+    <ClInclude Include="..\Public\Level_City.h" />
+    <ClInclude Include="..\public\Level_Ending.h" />
+    <ClInclude Include="..\Public\Level_Lava.h" />
+    <ClInclude Include="..\public\Level_Reality.h" />
+    <ClInclude Include="..\Public\Level_Reality_Bar.h" />
+    <ClInclude Include="..\Public\Level_Reality_Coffee.h" />
+    <ClInclude Include="..\Public\Level_Reality_Park.h" />
+    <ClInclude Include="..\Public\Loader2.h" />
+    <ClInclude Include="..\Public\Loader3.h" />
+    <ClInclude Include="..\Public\Loader4.h" />
+    <ClInclude Include="..\Public\LoadingFireEffect.h" />
+    <ClInclude Include="..\Public\LoadingSkyEffect.h" />
+    <ClInclude Include="..\Public\LucidInfo.h" />
+    <ClInclude Include="..\Public\Magic_Circle.h" />
+    <ClInclude Include="..\Public\Magic_Floor_Circle.h" />
+    <ClInclude Include="..\Public\Magic_Moon_Circle.h" />
+    <ClInclude Include="..\Public\Magic_Second_Hexagon.h" />
+    <ClInclude Include="..\Public\Magic_Six_Corn.h" />
+    <ClInclude Include="..\Public\Magic_Six_Shock.h" />
+    <ClInclude Include="..\Public\Magic_Snow.h" />
+    <ClInclude Include="..\Public\Magic_Vortex.h" />
+    <ClInclude Include="..\Public\MeleePiercing.h" />
+    <ClInclude Include="..\Public\Meteor_Effect2.h" />
+    <ClInclude Include="..\Public\Meteor_Rock0.h" />
+    <ClInclude Include="..\Public\Meteor_Smoke0.h" />
+    <ClInclude Include="..\Public\Mine_Water_Line.h" />
+    <ClInclude Include="..\Public\Monster_Hit_Effect.h" />
+    <ClInclude Include="..\Public\Monster_Hit_Mesh.h" />
+    <ClInclude Include="..\Public\MyMouse.h" />
+    <ClInclude Include="..\Public\Npc0.h" />
+    <ClInclude Include="..\Public\Npc1.h" />
+    <ClInclude Include="..\Public\Npc2.h" />
+    <ClInclude Include="..\Public\Npc3.h" />
+    <ClInclude Include="..\Public\Npc4.h" />
+    <ClInclude Include="..\Public\Npc5.h" />
+    <ClInclude Include="..\Public\Npc6.h" />
+    <ClInclude Include="..\Public\Npc7.h" />
+    <ClInclude Include="..\Public\Npc8.h" />
+    <ClInclude Include="..\public\OrthoGraphic_Snow.h" />
+    <ClInclude Include="..\Public\Player_Chaser.h" />
+    <ClInclude Include="..\Public\Player_Water_Effect.h" />
+    <ClInclude Include="..\public\Point_Effect2.h" />
+    <ClInclude Include="..\public\Point_Effect3.h" />
+    <ClInclude Include="..\public\Point_Effect4.h" />
+    <ClInclude Include="..\Public\Portal_City.h" />
+    <ClInclude Include="..\Public\Portal_Inside_Distotion.h" />
+    <ClInclude Include="..\Public\Portal_Inside_Mesh_Effect.h" />
+    <ClInclude Include="..\Public\PowerTiming_Effect.h" />
+    <ClInclude Include="..\Public\PrimalsScream_Distotion_Effect.h" />
+    <ClInclude Include="..\Public\PrimalsScream_Distotion_EffectRect.h" />
+    <ClInclude Include="..\Public\PrimalsScream_Effect.h" />
+    <ClInclude Include="..\Public\PrimalsWave0.h" />
+    <ClInclude Include="..\Public\Projectile_Manager.h" />
+    <ClInclude Include="..\Public\PushOutObject.h" />
+    <ClInclude Include="..\Public\Map_Manager.h" />
+    <ClInclude Include="..\Public\Melee1_Spear.h" />
+    <ClInclude Include="..\Public\Melee1_Sword.h" />
+    <ClInclude Include="..\Public\Melee_Weapon.h" />
+    <ClInclude Include="..\Public\MeshEffect.h" />
+    <ClInclude Include="..\Public\Mesh_Particle.h" />
+    <ClInclude Include="..\Public\Meteor.h" />
+    <ClInclude Include="..\Public\Meteor_Effect0.h" />
+    <ClInclude Include="..\Public\Meteor_Effect1.h" />
+    <ClInclude Include="..\Public\Meteor_Trail.h" />
+    <ClInclude Include="..\Public\Mine.h" />
+    <ClInclude Include="..\Public\Mine_Manager.h" />
+    <ClInclude Include="..\Public\MonsterDeathEffect.h" />
+    <ClInclude Include="..\Public\Monster_Manager.h" />
+    <ClInclude Include="..\Public\Morae_Tex.h" />
+    <ClInclude Include="..\Public\Park_Buy_UI.h" />
+    <ClInclude Include="..\Public\Park_InformationBox_UI.h" />
+    <ClInclude Include="..\Public\Park_Leaf_Text_Number.h" />
+    <ClInclude Include="..\Public\Park_Leaf_UI.h" />
+    <ClInclude Include="..\Public\Park_MakingUI.h" />
+    <ClInclude Include="..\Public\Park_Num_UI.h" />
+    <ClInclude Include="..\Public\Park_Text_UI.h" />
+    <ClInclude Include="..\Public\Particle_Effect.h" />
+    <ClInclude Include="..\Public\Percentage_PerNum.h" />
+    <ClInclude Include="..\Public\Percent_Tex.h" />
+    <ClInclude Include="..\Public\PlayerDeathEffect.h" />
+    <ClInclude Include="..\public\Player_Manager.h" />
+    <ClInclude Include="..\Public\Player_Ranged.h" />
+    <ClInclude Include="..\Public\Player_Weapon.h" />
+    <ClInclude Include="..\Public\Camera_Default.h" />
+    <ClInclude Include="..\Public\Client_Defines.h" />
+    <ClInclude Include="..\Public\PortalOpenEffect.h" />
+    <ClInclude Include="..\Public\Projectile.h" />
+    <ClInclude Include="..\Public\Puzzle_Water.h" />
+    <ClInclude Include="..\Public\Ranged_Effect1.h" />
+    <ClInclude Include="..\Public\Ranged_Effect2.h" />
+    <ClInclude Include="..\Public\Ranger1.h" />
+    <ClInclude Include="..\Public\Real_House_Circle.h" />
+    <ClInclude Include="..\Public\Regret_Blade.h" />
+    <ClInclude Include="..\Public\Regret_Bullet.h" />
+    <ClInclude Include="..\Public\Regret_Bullet_Trail.h" />
+    <ClInclude Include="..\Public\Regret_Clone.h" />
+    <ClInclude Include="..\Public\Regret_Clone_2.h" />
+    <ClInclude Include="..\Public\Regret_Clone_Trail0.h" />
+    <ClInclude Include="..\Public\Regret_Clone_Trail1.h" />
+    <ClInclude Include="..\Public\Regret_Cylinder_Beam.h" />
+    <ClInclude Include="..\Public\Regret_Cylinder_Trail.h" />
+    <ClInclude Include="..\Public\Regret_Dust_Effect.h" />
+    <ClInclude Include="..\Public\Regret_Floor_Circle.h" />
+    <ClInclude Include="..\Public\Regret_Floor_Effect.h" />
+    <ClInclude Include="..\Public\Regret_Flow_Effect.h" />
+    <ClInclude Include="..\Public\Regret_HandTrail0.h" />
+    <ClInclude Include="..\Public\Regret_HandTrail1.h" />
+    <ClInclude Include="..\Public\Regret_LegTrail.h" />
+    <ClInclude Include="..\Public\Resentment_Blade.h" />
+    <ClInclude Include="..\Public\Resentment_Floor_Effect.h" />
+    <ClInclude Include="..\Public\Resentment_Foot_Effect.h" />
+    <ClInclude Include="..\Public\Resentment_Lava_Rect.h" />
+    <ClInclude Include="..\Public\Resentment_LSword.h" />
+    <ClInclude Include="..\Public\Resentment_Meteo.h" />
+    <ClInclude Include="..\Public\Resentment_Meteor_Blast.h" />
+    <ClInclude Include="..\Public\Resentment_Meteor_Circle.h" />
+    <ClInclude Include="..\Public\Resentment_Meteor_Fire.h" />
+    <ClInclude Include="..\Public\Resentment_Meteor_Floor_Effect.h" />
+    <ClInclude Include="..\Public\Resentment_Meteor_Stone_Effect.h" />
+    <ClInclude Include="..\Public\Resentment_RSword.h" />
+    <ClInclude Include="..\Public\Resentment_Trail.h" />
+    <ClInclude Include="..\Public\Scene_BG.h" />
+    <ClInclude Include="..\Public\Scene_FadeInOut.h" />
+    <ClInclude Include="..\Public\Scene_Manager.h" />
+    <ClInclude Include="..\Public\Shadow_Spire_Beam.h" />
+    <ClInclude Include="..\Public\Shadow_Spire_Turn.h" />
+    <ClInclude Include="..\Public\Shiver_Ring.h" />
+    <ClInclude Include="..\Public\Shiver_Ring_Turn.h" />
+    <ClInclude Include="..\Public\Skill_Manager_Ch.h" />
+    <ClInclude Include="..\Public\Sound_Manager.h" />
+    <ClInclude Include="..\Public\Spark_Mesh.h" />
+    <ClInclude Include="..\Public\StaticField.h" />
+    <ClInclude Include="..\Public\Static_Field_Floor.h" />
+    <ClInclude Include="..\Public\Static_Field_Shock.h" />
+    <ClInclude Include="..\Public\Stone_Trace.h" />
+    <ClInclude Include="..\Public\Sword_Fire.h" />
+    <ClInclude Include="..\Public\TestBlur.h" />
+    <ClInclude Include="..\Public\Portal.h" />
+    <ClInclude Include="..\Public\PortalInsideEffect.h" />
+    <ClInclude Include="..\Public\Puzzle_Leg1.h" />
+    <ClInclude Include="..\Public\Puzzle_Leg2.h" />
+    <ClInclude Include="..\Public\Puzzle_Leg3.h" />
+    <ClInclude Include="..\Public\Puzzle_Leg4.h" />
+    <ClInclude Include="..\Public\Puzzle_Manager.h" />
+    <ClInclude Include="..\Public\RealWorld_Num_UI.h" />
+    <ClInclude Include="..\Public\Real_Coffee.h" />
+    <ClInclude Include="..\Public\Real_Park_BackGround_UI.h" />
+    <ClInclude Include="..\Public\Recycle_Number.h" />
+    <ClInclude Include="..\Public\SandItem.h" />
+    <ClInclude Include="..\Public\SmokeEffect2.h" />
+    <ClInclude Include="..\Public\SpawnEffect.h" />
+    <ClInclude Include="..\Public\SpawnEffect2.h" />
+    <ClInclude Include="..\Public\Squishy.h" />
+    <ClInclude Include="..\Public\Test_Move_Light.h" />
+    <ClInclude Include="..\Public\TexDot.h" />
+    <ClInclude Include="..\Public\Time_Manager.h" />
+    <ClInclude Include="..\public\TokenItem.h" />
+    <ClInclude Include="..\Public\Trail_Modifier.h" />
+    <ClInclude Include="..\Public\Treasure.h" />
+    <ClInclude Include="..\Public\Level_GamePlay.h" />
+    <ClInclude Include="..\Public\Level_Loading.h" />
+    <ClInclude Include="..\Public\Level_Logo.h" />
+    <ClInclude Include="..\Public\Loader.h" />
+    <ClInclude Include="..\Public\MainApp.h" />
+    <ClInclude Include="..\Public\Real_Bar_BackGround_UI.h" />
+    <ClInclude Include="..\Public\Real_Bar_Map_UI.h" />
+    <ClInclude Include="..\Public\Real_Park.h" />
+    <ClInclude Include="..\Public\TerraEffect.h" />
+    <ClInclude Include="..\Public\Player.h" />
+    <ClInclude Include="..\Public\Player_Shield.h" />
+    <ClInclude Include="..\Public\Point_Effect.h" />
+    <ClInclude Include="..\Public\Question_UI.h" />
+    <ClInclude Include="..\Public\RealBar.h" />
+    <ClInclude Include="..\Public\RealHouse.h" />
+    <ClInclude Include="..\Public\RealWorld_Light_Icon_UI.h" />
+    <ClInclude Include="..\Public\RealWorld_Player.h" />
+    <ClInclude Include="..\Public\RealWorld_Text_UI.h" />
+    <ClInclude Include="..\Public\Real_leave_BackGround_UI.h" />
+    <ClInclude Include="..\Public\Real_leave_Light_UI.h" />
+    <ClInclude Include="..\Public\Real_leave_Map_UI.h" />
+    <ClInclude Include="..\Public\Real_leave_Place_Mask_Color_UI.h" />
+    <ClInclude Include="..\Public\Real_leave_Place_Mask_UI.h" />
+    <ClInclude Include="..\Public\Real_leave_Place_UI.h" />
+    <ClInclude Include="..\Public\Real_UI.h" />
+    <ClInclude Include="..\Public\Rect_Effect.h" />
+    <ClInclude Include="..\Public\Scroll_UI.h" />
+    <ClInclude Include="..\Public\Sky.h" />
+    <ClInclude Include="..\Public\Stage_Manager.h" />
+    <ClInclude Include="..\Public\Star_UI.h" />
+    <ClInclude Include="..\Public\Text_Number.h" />
+    <ClInclude Include="..\Public\TrailEffect.h" />
+    <ClInclude Include="..\Public\Treasure_Ray.h" />
+    <ClInclude Include="..\Public\Turret_AOE.h" />
+    <ClInclude Include="..\Public\Turret_Beam.h" />
+    <ClInclude Include="..\Public\Turret_Blast.h" />
+    <ClInclude Include="..\Public\Turret_Bullet.h" />
+    <ClInclude Include="..\Public\Turret_Melee_Arms.h" />
+    <ClInclude Include="..\Public\UI_BossHealthBar.h" />
+    <ClInclude Include="..\Public\UI_BossHealthBar_BG.h" />
+    <ClInclude Include="..\Public\UI_BossHealth_Name.h" />
+    <ClInclude Include="..\public\UI_BossTips.h" />
+    <ClInclude Include="..\public\UI_Challenge_MB.h" />
+    <ClInclude Include="..\public\UI_Challenge_LT.h" />
+    <ClInclude Include="..\Public\UI_ChangeItem_Arrow.h" />
+    <ClInclude Include="..\Public\UI_ChangeItem_Name.h" />
+    <ClInclude Include="..\Public\UI_Change_Shield.h" />
+    <ClInclude Include="..\Public\UI_EB_Back.h" />
+    <ClInclude Include="..\Public\UI_ExitButton.h" />
+    <ClInclude Include="..\Public\UI_ExpBar.h" />
+    <ClInclude Include="..\Public\UI_F_SubAbility.h" />
+    <ClInclude Include="..\Public\UI_HealthBar.h" />
+    <ClInclude Include="..\Public\UI_HealthBar_BG.h" />
+    <ClInclude Include="..\public\UI_Idea.h" />
+    <ClInclude Include="..\Public\UI_Inven_BG.h" />
+    <ClInclude Include="..\Public\UI_Inven_DreamRush.h" />
+    <ClInclude Include="..\Public\UI_Inven_Icons.h" />
+    <ClInclude Include="..\public\UI_Inven_Info_Number.h" />
+    <ClInclude Include="..\public\UI_Inven_Info_Text.h" />
+    <ClInclude Include="..\public\UI_Inven_Number_Bar.h" />
+    <ClInclude Include="..\Public\UI_Inven_TokenInfo.h" />
+    <ClInclude Include="..\Public\UI_Inven_Token_Icons.h" />
+    <ClInclude Include="..\Public\UI_Item.h" />
+    <ClInclude Include="..\Public\UI_Item_AFrame.h" />
+    <ClInclude Include="..\Public\UI_Item_Change_BG.h" />
+    <ClInclude Include="..\Public\UI_Item_Change_Frame.h" />
+    <ClInclude Include="..\Public\UI_Item_Change_Main.h" />
+    <ClInclude Include="..\Public\UI_Item_Damage.h" />
+    <ClInclude Include="..\Public\UI_Item_FunnyTip.h" />
+    <ClInclude Include="..\Public\UI_Item_M_Ability.h" />
+    <ClInclude Include="..\Public\UI_Item_Name.h" />
+    <ClInclude Include="..\Public\UI_Item_PerSec.h" />
+    <ClInclude Include="..\Public\UI_Item_Roma.h" />
+    <ClInclude Include="..\Public\UI_Item_Speed.h" />
+    <ClInclude Include="..\Public\UI_Item_S_Ability.h" />
+    <ClInclude Include="..\Public\UI_LeftBottom.h" />
+    <ClInclude Include="..\Public\UI_LeftTop.h" />
+    <ClInclude Include="..\Public\UI_LucidBar_BG.h" />
+    <ClInclude Include="..\Public\UI_LucidChange_BG.h" />
+    <ClInclude Include="..\Public\UI_LucidChange_BOX.h" />
+    <ClInclude Include="..\Public\UI_LucidChange_MBG.h" />
+    <ClInclude Include="..\Public\UI_MainAbility.h" />
+    <ClInclude Include="..\Public\UI_MainBar_BG.h" />
+    <ClInclude Include="..\Public\UI_MainInven.h" />
+    <ClInclude Include="..\Public\UI_Main_StageEnd.h" />
+    <ClInclude Include="..\Public\UI_MapHeader.h" />
+    <ClInclude Include="..\Public\UI_Maps.h" />
+    <ClInclude Include="..\Public\UI_Map_Bridge.h" />
+    <ClInclude Include="..\Public\UI_Map_MKey.h" />
+    <ClInclude Include="..\Public\UI_Map_Object.h" />
+    <ClInclude Include="..\Public\UI_Map_Select_Frame.h" />
+    <ClInclude Include="..\Public\UI_Minimap.h" />
+    <ClInclude Include="..\Public\UI_Moon.h" />
+    <ClInclude Include="..\Public\UI_PB_Back.h" />
+    <ClInclude Include="..\Public\UI_PlayButton.h" />
+    <ClInclude Include="..\Public\UI_Progress_BG.h" />
+    <ClInclude Include="..\Public\UI_Progress_Icon.h" />
+    <ClInclude Include="..\public\UI_Rebirth.h" />
+    <ClInclude Include="..\Public\UI_RecycleBar.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_BP.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_Continue.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_Continue_BG.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_LockIcon.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_RS_Text.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_Shururuk.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_StagePicture.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_TallSmokeSprite.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_Time_Tex.h" />
+    <ClInclude Include="..\Public\UI_StageEnd_UnLockSprite.h" />
+    <ClInclude Include="..\Public\UI_Stage_Percentage_Bar.h" />
+    <ClInclude Include="..\Public\UI_Stage_Percentage_Bar_BG.h" />
+    <ClInclude Include="..\Public\UI_Stage_SubText.h" />
+    <ClInclude Include="..\Public\UI_Stage_Text.h" />
+    <ClInclude Include="..\Public\UI_Stage_Text_RS.h" />
+    <ClInclude Include="..\Public\UI_Stage_Text_RS_BG.h" />
+    <ClInclude Include="..\Public\UI_SubAbility_Coltime.h" />
+    <ClInclude Include="..\Public\UI_S_SubAbility.h" />
+    <ClInclude Include="..\public\UI_Token.h" />
+    <ClInclude Include="..\Public\VSScreenImage.h" />
+    <ClInclude Include="..\Public\Watch_Effect.h" />
+    <ClInclude Include="..\Public\Water_Effect.h" />
+    <ClInclude Include="..\Public\Water_Line_Effect0.h" />
+    <ClInclude Include="..\Public\Water_Line_Effect1.h" />
+    <ClInclude Include="..\Public\Wave_Stone.h" />
+    <ClInclude Include="..\Public\Weapon.h" />
+    <ClInclude Include="..\Public\Terrain.h" />
+    <ClInclude Include="..\Public\UI.h" />
+    <ClInclude Include="..\Public\Weapon_Trail0.h" />
+    <ClInclude Include="..\Public\WhiteScreen.h" />
+    <ClInclude Include="..\Public\White_Rect.h" />
+    <ClInclude Include="..\Public\WingEffect.h" />
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Private\AllObject.cpp" />
+    <ClCompile Include="..\Private\Arrow.cpp" />
+    <ClCompile Include="..\Private\Arrow_Center_Effect.cpp" />
+    <ClCompile Include="..\Private\Arrow_Effect.cpp" />
+    <ClCompile Include="..\Private\Arrow_Trail.cpp" />
+    <ClCompile Include="..\Private\Arrow_Trail_Straight.cpp" />
+    <ClCompile Include="..\Private\AStar.cpp" />
+    <ClCompile Include="..\Private\Attack_Ring.cpp" />
+    <ClCompile Include="..\Private\BackGround.cpp" />
+    <ClCompile Include="..\Private\Bar_InformationBox_UI.cpp" />
+    <ClCompile Include="..\Private\Bar_MakingUI.cpp" />
+    <ClCompile Include="..\Private\Bar_Npc.cpp" />
+    <ClCompile Include="..\Private\Bar_Num_UI.cpp" />
+    <ClCompile Include="..\Private\Bar_Present_UI.cpp" />
+    <ClCompile Include="..\Private\Bar_Text_UI.cpp" />
+    <ClCompile Include="..\Private\Bar_Waterdrop_Icon_UI.cpp" />
+    <ClCompile Include="..\Private\Bar_Waterdrop_Text_Number.cpp" />
+    <ClCompile Include="..\Private\Bomb.cpp" />
+    <ClCompile Include="..\Private\Bomb_Effect.cpp" />
+    <ClCompile Include="..\Private\Bomb_Effect_Floor.cpp" />
+    <ClCompile Include="..\Private\Bomb_Effect_Flow.cpp" />
+    <ClCompile Include="..\Private\Bomb_Effect_SSD.cpp" />
+    <ClCompile Include="..\Private\Bomb_Used.cpp" />
+    <ClCompile Include="..\Private\BossGreenShield.cpp" />
+    <ClCompile Include="..\Private\BossGreenShield2.cpp" />
+    <ClCompile Include="..\Private\BossLevelObject.cpp" />
+    <ClCompile Include="..\Private\Boss_Circle_Effect.cpp" />
+    <ClCompile Include="..\Private\Boss_Fear.cpp" />
+    <ClCompile Include="..\Private\Boss_Map_Size.cpp" />
+    <ClCompile Include="..\Private\Attack0_Effect.cpp" />
+    <ClCompile Include="..\Private\Attack0_Effect2.cpp" />
+    <ClCompile Include="..\Private\Boss_Regret.cpp" />
+    <ClCompile Include="..\Private\Boss_Resentment.cpp" />
+    <ClCompile Include="..\private\Bubble_Effect.cpp" />
+    <ClCompile Include="..\Private\Bullet.cpp" />
+    <ClCompile Include="..\Private\Bullet_Shield_Effect.cpp" />
+    <ClCompile Include="..\Private\Camera_RealWorld.cpp" />
+    <ClCompile Include="..\Private\Casting_FloorCircle.cpp" />
+    <ClCompile Include="..\private\Challenge_FadeInOut.cpp" />
+    <ClCompile Include="..\Private\Ch_Player_Meteor.cpp" />
+    <ClCompile Include="..\Private\Ch_Player_Meteor_Blast.cpp" />
+    <ClCompile Include="..\Private\Ch_Player_Meteor_Fire.cpp" />
+    <ClCompile Include="..\Private\Ch_Player_Meteor_Floor_Effect.cpp" />
+    <ClCompile Include="..\Private\Ch_Player_Meteor_Stone_Effect.cpp" />
+    <ClCompile Include="..\Private\Ch_Stone_Boom.cpp" />
+    <ClCompile Include="..\Private\Ch_Stone_Boom_Black.cpp" />
+    <ClCompile Include="..\Private\CircleItem.cpp" />
+    <ClCompile Include="..\Private\CityLand.cpp" />
+    <ClCompile Include="..\Private\CityObject.cpp" />
+    <ClCompile Include="..\Private\Client_Level_Manager.cpp" />
+    <ClCompile Include="..\Private\ClockHand.cpp" />
+    <ClCompile Include="..\Private\ClockMap.cpp" />
+    <ClCompile Include="..\Private\Clock_Red.cpp" />
+    <ClCompile Include="..\Private\Coffee_Click_Effeet.cpp" />
+    <ClCompile Include="..\Private\Coffee_InformationBox_UI.cpp" />
+    <ClCompile Include="..\Private\Coffee_MakingUI.cpp" />
+    <ClCompile Include="..\Private\Coffee_Spark_Num.cpp" />
+    <ClCompile Include="..\Private\Coffee_Text_UI.cpp" />
+    <ClCompile Include="..\Private\Colon_Tex.cpp" />
+    <ClCompile Include="..\Private\ColorItem.cpp" />
+    <ClCompile Include="..\Private\Coltime_Number.cpp" />
+    <ClCompile Include="..\private\Damage_Number.cpp" />
+    <ClCompile Include="..\Private\DashSmoke.cpp" />
+    <ClCompile Include="..\Private\Dash_Distortion.cpp" />
+    <ClCompile Include="..\Private\DeathCircleEffect.cpp" />
+    <ClCompile Include="..\Private\Destruct.cpp" />
+    <ClCompile Include="..\Private\Effect_Ability_Shake.cpp" />
+    <ClCompile Include="..\Private\Endgame_Manager.cpp" />
+    <ClCompile Include="..\Private\Ending_Fadeio.cpp" />
+    <ClCompile Include="..\Private\Ending_Screen_Image.cpp" />
+    <ClCompile Include="..\Private\Ending_Text.cpp" />
+    <ClCompile Include="..\Private\Ending_Tips.cpp" />
+    <ClCompile Include="..\Private\Enemies_Bullet_Back.cpp" />
+    <ClCompile Include="..\Private\Enemies_Bullet_Effect_Round.cpp" />
+    <ClCompile Include="..\Private\Enemies_Bullet_Effect_Trail.cpp" />
+    <ClCompile Include="..\Private\Enemy.cpp" />
+    <ClCompile Include="..\Private\Enemy_Bullet_Ring.cpp" />
+    <ClCompile Include="..\Private\Enemy_Bullet_Ring2.cpp" />
+    <ClCompile Include="..\Private\Enemy_Bullet_Round.cpp" />
+    <ClCompile Include="..\private\Equipment_Manager.cpp" />
+    <ClCompile Include="..\Private\Event_Manager.cpp" />
+    <ClCompile Include="..\Private\Eve_Present_Info_UI.cpp" />
+    <ClCompile Include="..\Private\FadeInOut.cpp" />
+    <ClCompile Include="..\Private\Falling_Start_Effect.cpp" />
+    <ClCompile Include="..\Private\FearShadow.cpp" />
+    <ClCompile Include="..\Private\Fear_Beam.cpp" />
+    <ClCompile Include="..\Private\Fear_Beam_Final.cpp" />
+    <ClCompile Include="..\Private\Fear_Beam_Mouse.cpp" />
+    <ClCompile Include="..\Private\Fear_Beam_Red_Mouse.cpp" />
+    <ClCompile Include="..\Private\Fear_Bullet.cpp" />
+    <ClCompile Include="..\Private\Fear_Bullet_Effect.cpp" />
+    <ClCompile Include="..\Private\Fear_Bullet_Effect_Round.cpp" />
+    <ClCompile Include="..\Private\Fear_Bullet_Effect_Trail.cpp" />
+    <ClCompile Include="..\Private\Fear_Jump_Effect.cpp" />
+    <ClCompile Include="..\Private\Fear_Jump_Ring.cpp" />
+    <ClCompile Include="..\Private\Fear_Mine.cpp" />
+    <ClCompile Include="..\Private\Fear_Red.cpp" />
+    <ClCompile Include="..\Private\Fear_Red_Beam.cpp" />
+    <ClCompile Include="..\Private\Fear_Tail.cpp" />
+    <ClCompile Include="..\Private\Fear_Tail_Trail.cpp" />
+    <ClCompile Include="..\Private\Fear_Tornado.cpp" />
+    <ClCompile Include="..\Private\Floor_Arrow_Mesh.cpp" />
+    <ClCompile Include="..\Private\Floor_Arrow_Texture.cpp" />
+    <ClCompile Include="..\Private\Floor_Kunai_Mesh.cpp" />
+    <ClCompile Include="..\Private\Fount.cpp" />
+    <ClCompile Include="..\Private\FountLucid.cpp" />
+    <ClCompile Include="..\Private\GameObject_Loader.cpp" />
+    <ClCompile Include="..\Private\GaraImsi.cpp" />
+    <ClCompile Include="..\private\GaraLava.cpp" />
+    <ClCompile Include="..\Private\Goods_Green_Text_Num.cpp" />
+    <ClCompile Include="..\Private\Goods_Mix_Text_Num.cpp" />
+    <ClCompile Include="..\Private\Goods_Text_Num.cpp" />
+    <ClCompile Include="..\Private\Goods_UI.cpp" />
+    <ClCompile Include="..\Private\Goods_Yellow_Text_Num.cpp" />
+    <ClCompile Include="..\Private\HeavyMelee1.cpp" />
+    <ClCompile Include="..\Private\House_Light_Text_Number.cpp" />
+    <ClCompile Include="..\Private\House_MakingUI.cpp" />
+    <ClCompile Include="..\Private\HpPotion.cpp" />
+    <ClCompile Include="..\Private\IdeaItem.cpp" />
+    <ClCompile Include="..\Private\InfoBox_Click_Effect.cpp" />
+    <ClCompile Include="..\Private\InformationBox_UI.cpp" />
+    <ClCompile Include="..\Private\Javelin_Projectile.cpp" />
+    <ClCompile Include="..\Private\Javelin_Socket.cpp" />
+    <ClCompile Include="..\Private\Key.cpp" />
+    <ClCompile Include="..\Private\Kunai.cpp" />
+    <ClCompile Include="..\Private\BaseTile.cpp" />
+    <ClCompile Include="..\Private\Kunai_Straight_Trail2.cpp" />
+    <ClCompile Include="..\Private\Land.cpp" />
+    <ClCompile Include="..\Private\LavaFlow_Center.cpp" />
+    <ClCompile Include="..\Private\LavaFlow_Part.cpp" />
+    <ClCompile Include="..\Private\LavaLand.cpp" />
+    <ClCompile Include="..\Private\LavaObject.cpp" />
+    <ClCompile Include="..\Private\Lava_Explosion.cpp" />
+    <ClCompile Include="..\Private\Lava_Explosion_Rect.cpp" />
+    <ClCompile Include="..\Private\Level_Boss_Fear.cpp" />
+    <ClCompile Include="..\Private\Level_Boss_Regret.cpp" />
+    <ClCompile Include="..\Private\Level_Boss_Resentment.cpp" />
+    <ClCompile Include="..\Private\Level_City.cpp" />
+    <ClCompile Include="..\private\Level_Ending.cpp" />
+    <ClCompile Include="..\Private\Level_Lava.cpp" />
+    <ClCompile Include="..\private\Level_Reality.cpp" />
+    <ClCompile Include="..\Private\Level_Reality_Bar.cpp" />
+    <ClCompile Include="..\Private\Level_Reality_Coffee.cpp" />
+    <ClCompile Include="..\Private\Level_Reality_Park.cpp" />
+    <ClCompile Include="..\Private\Loader2.cpp" />
+    <ClCompile Include="..\Private\Loader3.cpp" />
+    <ClCompile Include="..\Private\Loader4.cpp" />
+    <ClCompile Include="..\Private\LoadingFireEffect.cpp" />
+    <ClCompile Include="..\Private\LoadingSkyEffect.cpp" />
+    <ClCompile Include="..\Private\LucidInfo.cpp" />
+    <ClCompile Include="..\Private\Magic_Circle.cpp" />
+    <ClCompile Include="..\Private\Magic_Floor_Circle.cpp" />
+    <ClCompile Include="..\Private\Magic_Moon_Circle.cpp" />
+    <ClCompile Include="..\Private\Magic_Second_Hexagon.cpp" />
+    <ClCompile Include="..\Private\Magic_Six_Corn.cpp" />
+    <ClCompile Include="..\Private\Magic_Six_Shock.cpp" />
+    <ClCompile Include="..\Private\Magic_Snow.cpp" />
+    <ClCompile Include="..\Private\Magic_Vortex.cpp" />
+    <ClCompile Include="..\Private\MeleePiercing.cpp" />
+    <ClCompile Include="..\Private\Meteor_Effect2.cpp" />
+    <ClCompile Include="..\Private\Meteor_Rock0.cpp" />
+    <ClCompile Include="..\Private\Meteor_Smoke0.cpp" />
+    <ClCompile Include="..\Private\Mine_Water_Line.cpp" />
+    <ClCompile Include="..\Private\Monster_Hit_Effect.cpp" />
+    <ClCompile Include="..\Private\Monster_Hit_Mesh.cpp" />
+    <ClCompile Include="..\Private\MyMouse.cpp" />
+    <ClCompile Include="..\Private\Npc0.cpp" />
+    <ClCompile Include="..\Private\Npc1.cpp" />
+    <ClCompile Include="..\Private\Npc2.cpp" />
+    <ClCompile Include="..\Private\Npc3.cpp" />
+    <ClCompile Include="..\Private\Npc4.cpp" />
+    <ClCompile Include="..\Private\Npc5.cpp" />
+    <ClCompile Include="..\Private\Npc6.cpp" />
+    <ClCompile Include="..\Private\Npc7.cpp" />
+    <ClCompile Include="..\Private\Npc8.cpp" />
+    <ClCompile Include="..\private\OrthoGraphic_Snow.cpp" />
+    <ClCompile Include="..\Private\Player_Chaser.cpp" />
+    <ClCompile Include="..\Private\Player_Water_Effect.cpp" />
+    <ClCompile Include="..\private\Point_Effect2.cpp" />
+    <ClCompile Include="..\private\Point_Effect3.cpp" />
+    <ClCompile Include="..\private\Point_Effect4.cpp" />
+    <ClCompile Include="..\Private\Portal_City.cpp" />
+    <ClCompile Include="..\Private\Portal_Inside_Distotion.cpp" />
+    <ClCompile Include="..\Private\Portal_Inside_Mesh_Effect.cpp" />
+    <ClCompile Include="..\Private\PowerTiming_Effect.cpp" />
+    <ClCompile Include="..\Private\PrimalsScream_Distotion_Effect.cpp" />
+    <ClCompile Include="..\Private\PrimalsScream_Distotion_EffectRect.cpp" />
+    <ClCompile Include="..\Private\PrimalsScream_Effect.cpp" />
+    <ClCompile Include="..\Private\PrimalsWave0.cpp" />
+    <ClCompile Include="..\Private\Projectile_Manager.cpp" />
+    <ClCompile Include="..\Private\PushOutObject.cpp" />
+    <ClCompile Include="..\Private\Map_Manager.cpp" />
+    <ClCompile Include="..\Private\Melee1_Spear.cpp" />
+    <ClCompile Include="..\Private\Melee1_Sword.cpp" />
+    <ClCompile Include="..\Private\Melee_Weapon.cpp" />
+    <ClCompile Include="..\Private\MeshEffect.cpp" />
+    <ClCompile Include="..\Private\Mesh_Particle.cpp" />
+    <ClCompile Include="..\Private\Meteor.cpp" />
+    <ClCompile Include="..\Private\Meteor_Effect0.cpp" />
+    <ClCompile Include="..\Private\Meteor_Effect1.cpp" />
+    <ClCompile Include="..\Private\Meteor_Trail.cpp" />
+    <ClCompile Include="..\Private\Mine.cpp" />
+    <ClCompile Include="..\Private\Mine_Manager.cpp" />
+    <ClCompile Include="..\Private\MonsterDeathEffect.cpp" />
+    <ClCompile Include="..\Private\Monster_Manager.cpp" />
+    <ClCompile Include="..\Private\Morae_Tex.cpp" />
+    <ClCompile Include="..\Private\Park_Buy_UI.cpp" />
+    <ClCompile Include="..\Private\Park_InformationBox_UI.cpp" />
+    <ClCompile Include="..\Private\Park_Leaf_Text_Number.cpp" />
+    <ClCompile Include="..\Private\Park_Leaf_UI.cpp" />
+    <ClCompile Include="..\Private\Park_MakingUI.cpp" />
+    <ClCompile Include="..\Private\Park_Num_UI.cpp" />
+    <ClCompile Include="..\Private\Park_Text_UI.cpp" />
+    <ClCompile Include="..\Private\Particle_Effect.cpp" />
+    <ClCompile Include="..\Private\Percentage_PerNum.cpp" />
+    <ClCompile Include="..\Private\Percent_Tex.cpp" />
+    <ClCompile Include="..\Private\PlayerDeathEffect.cpp" />
+    <ClCompile Include="..\private\Player_Manager.cpp" />
+    <ClCompile Include="..\Private\Player_Ranged.cpp" />
+    <ClCompile Include="..\Private\Player_Weapon.cpp" />
+    <ClCompile Include="..\Private\Camera_Default.cpp" />
+    <ClCompile Include="..\Private\PortalOpenEffect.cpp" />
+    <ClCompile Include="..\Private\Projectile.cpp" />
+    <ClCompile Include="..\Private\Puzzle_Water.cpp" />
+    <ClCompile Include="..\Private\Ranged_Effect1.cpp" />
+    <ClCompile Include="..\Private\Ranged_Effect2.cpp" />
+    <ClCompile Include="..\Private\Ranger1.cpp" />
+    <ClCompile Include="..\Private\Real_House_Circle.cpp" />
+    <ClCompile Include="..\Private\Regret_Blade.cpp" />
+    <ClCompile Include="..\Private\Regret_Bullet.cpp" />
+    <ClCompile Include="..\Private\Regret_Bullet_Trail.cpp" />
+    <ClCompile Include="..\Private\Regret_Clone.cpp" />
+    <ClCompile Include="..\Private\Regret_Clone_2.cpp" />
+    <ClCompile Include="..\Private\Regret_Clone_Trail0.cpp" />
+    <ClCompile Include="..\Private\Regret_Clone_Trail1.cpp" />
+    <ClCompile Include="..\Private\Regret_Cylinder_Beam.cpp" />
+    <ClCompile Include="..\Private\Regret_Cylinder_Trail.cpp" />
+    <ClCompile Include="..\Private\Regret_Dust_Effect.cpp" />
+    <ClCompile Include="..\Private\Regret_Floor_Circle.cpp" />
+    <ClCompile Include="..\Private\Regret_Floor_Effect.cpp" />
+    <ClCompile Include="..\Private\Regret_Flow_Effect.cpp" />
+    <ClCompile Include="..\Private\Regret_HandTrail0.cpp" />
+    <ClCompile Include="..\Private\Regret_HandTrail1.cpp" />
+    <ClCompile Include="..\Private\Regret_LegTrail.cpp" />
+    <ClCompile Include="..\Private\Resentment_Blade.cpp" />
+    <ClCompile Include="..\Private\Resentment_Floor_Effect.cpp" />
+    <ClCompile Include="..\Private\Resentment_Foot_Effect.cpp" />
+    <ClCompile Include="..\Private\Resentment_Lava_Rect.cpp" />
+    <ClCompile Include="..\Private\Resentment_LSword.cpp" />
+    <ClCompile Include="..\Private\Resentment_Meteo.cpp" />
+    <ClCompile Include="..\Private\Resentment_Meteor_Blast.cpp" />
+    <ClCompile Include="..\Private\Resentment_Meteor_Circle.cpp" />
+    <ClCompile Include="..\Private\Resentment_Meteor_Fire.cpp" />
+    <ClCompile Include="..\Private\Resentment_Meteor_Floor_Effect.cpp" />
+    <ClCompile Include="..\Private\Resentment_Meteor_Stone_Effect.cpp" />
+    <ClCompile Include="..\Private\Resentment_RSword.cpp" />
+    <ClCompile Include="..\Private\Resentment_Trail.cpp" />
+    <ClCompile Include="..\Private\Scene_BG.cpp" />
+    <ClCompile Include="..\Private\Scene_FadeInOut.cpp" />
+    <ClCompile Include="..\Private\Scene_Manager.cpp" />
+    <ClCompile Include="..\Private\Shadow_Spire_Beam.cpp" />
+    <ClCompile Include="..\Private\Shadow_Spire_Turn.cpp" />
+    <ClCompile Include="..\Private\Shiver_Ring.cpp" />
+    <ClCompile Include="..\Private\Shiver_Ring_Turn.cpp" />
+    <ClCompile Include="..\Private\Skill_Manager_Ch.cpp" />
+    <ClCompile Include="..\Private\Sound_Manager.cpp" />
+    <ClCompile Include="..\Private\Spark_Mesh.cpp" />
+    <ClCompile Include="..\Private\StaticField.cpp" />
+    <ClCompile Include="..\Private\Static_Field_Floor.cpp" />
+    <ClCompile Include="..\Private\Static_Field_Shock.cpp" />
+    <ClCompile Include="..\Private\Stone_Trace.cpp" />
+    <ClCompile Include="..\Private\Sword_Fire.cpp" />
+    <ClCompile Include="..\Private\TestBlur.cpp" />
+    <ClCompile Include="..\Private\Portal.cpp" />
+    <ClCompile Include="..\Private\PortalInsideEffect.cpp" />
+    <ClCompile Include="..\Private\Puzzle_Leg1.cpp" />
+    <ClCompile Include="..\Private\Puzzle_Leg2.cpp" />
+    <ClCompile Include="..\Private\Puzzle_Leg3.cpp" />
+    <ClCompile Include="..\Private\Puzzle_Leg4.cpp" />
+    <ClCompile Include="..\Private\Puzzle_Manager.cpp" />
+    <ClCompile Include="..\Private\RealWorld_Num_UI.cpp" />
+    <ClCompile Include="..\Private\Real_Coffee.cpp" />
+    <ClCompile Include="..\Private\Real_Park_BackGround_UI.cpp" />
+    <ClCompile Include="..\Private\Recycle_Number.cpp" />
+    <ClCompile Include="..\Private\SandItem.cpp" />
+    <ClCompile Include="..\Private\SmokeEffect2.cpp" />
+    <ClCompile Include="..\Private\SpawnEffect.cpp" />
+    <ClCompile Include="..\Private\SpawnEffect2.cpp" />
+    <ClCompile Include="..\Private\Squishy.cpp" />
+    <ClCompile Include="..\Private\Test_Move_Light.cpp" />
+    <ClCompile Include="..\Private\TexDot.cpp" />
+    <ClCompile Include="..\Private\Time_Manager.cpp" />
+    <ClCompile Include="..\private\TokenItem.cpp" />
+    <ClCompile Include="..\Private\Trail_Modifier.cpp" />
+    <ClCompile Include="..\Private\Treasure.cpp" />
+    <ClCompile Include="..\Private\Level_GamePlay.cpp" />
+    <ClCompile Include="..\Private\Level_Loading.cpp" />
+    <ClCompile Include="..\Private\Level_Logo.cpp" />
+    <ClCompile Include="..\Private\Loader.cpp" />
+    <ClCompile Include="..\Private\MainApp.cpp" />
+    <ClCompile Include="..\Private\Real_Bar_BackGround_UI.cpp" />
+    <ClCompile Include="..\Private\Real_Bar_Map_UI.cpp" />
+    <ClCompile Include="..\Private\Real_Park.cpp" />
+    <ClCompile Include="..\Private\TerraEffect.cpp" />
+    <ClCompile Include="..\Private\Player.cpp" />
+    <ClCompile Include="..\Private\Player_Shield.cpp" />
+    <ClCompile Include="..\Private\Point_Effect.cpp" />
+    <ClCompile Include="..\Private\Question_UI.cpp" />
+    <ClCompile Include="..\Private\RealBar.cpp" />
+    <ClCompile Include="..\Private\RealHouse.cpp" />
+    <ClCompile Include="..\Private\RealWorld_Light_Icon_UI.cpp" />
+    <ClCompile Include="..\Private\RealWorld_Player.cpp" />
+    <ClCompile Include="..\Private\RealWorld_Text_UI.cpp" />
+    <ClCompile Include="..\Private\Real_leave_BackGround_UI.cpp" />
+    <ClCompile Include="..\Private\Real_leave_Light_UI.cpp" />
+    <ClCompile Include="..\Private\Real_leave_Map_UI.cpp" />
+    <ClCompile Include="..\Private\Real_leave_Place_Mask_Color_UI.cpp" />
+    <ClCompile Include="..\Private\Real_leave_Place_Mask_UI.cpp" />
+    <ClCompile Include="..\Private\Real_leave_Place_UI.cpp" />
+    <ClCompile Include="..\Private\Real_UI.cpp" />
+    <ClCompile Include="..\Private\Rect_Effect.cpp" />
+    <ClCompile Include="..\Private\Scroll_UI.cpp" />
+    <ClCompile Include="..\Private\Sky.cpp" />
+    <ClCompile Include="..\Private\Stage_Manager.cpp" />
+    <ClCompile Include="..\Private\Star_UI.cpp" />
+    <ClCompile Include="..\Private\Text_Number.cpp" />
+    <ClCompile Include="..\Private\TrailEffect.cpp" />
+    <ClCompile Include="..\Private\Treasure_Ray.cpp" />
+    <ClCompile Include="..\Private\Turret_AOE.cpp" />
+    <ClCompile Include="..\Private\Turret_Beam.cpp" />
+    <ClCompile Include="..\Private\Turret_Blast.cpp" />
+    <ClCompile Include="..\Private\Turret_Bullet.cpp" />
+    <ClCompile Include="..\Private\Turret_Melee_Arms.cpp" />
+    <ClCompile Include="..\Private\UI_BossHealthBar.cpp" />
+    <ClCompile Include="..\Private\UI_BossHealthBar_BG.cpp" />
+    <ClCompile Include="..\Private\UI_BossHealth_Name.cpp" />
+    <ClCompile Include="..\private\UI_BossTips.cpp" />
+    <ClCompile Include="..\private\UI_Challenge_MB.cpp" />
+    <ClCompile Include="..\private\UI_Challenge_LT.cpp" />
+    <ClCompile Include="..\Private\UI_ChangeItem_Arrow.cpp" />
+    <ClCompile Include="..\Private\UI_ChangeItem_Name.cpp" />
+    <ClCompile Include="..\Private\UI_Change_Shield.cpp" />
+    <ClCompile Include="..\Private\UI_EB_Back.cpp" />
+    <ClCompile Include="..\Private\UI_ExitButton.cpp" />
+    <ClCompile Include="..\Private\UI_ExpBar.cpp" />
+    <ClCompile Include="..\Private\UI_F_SubAbility.cpp" />
+    <ClCompile Include="..\Private\UI_HealthBar.cpp" />
+    <ClCompile Include="..\Private\UI_HealthBar_BG.cpp" />
+    <ClCompile Include="..\private\UI_Idea.cpp" />
+    <ClCompile Include="..\Private\UI_Inven_BG.cpp" />
+    <ClCompile Include="..\Private\UI_Inven_DreamRush.cpp" />
+    <ClCompile Include="..\Private\UI_Inven_Icons.cpp" />
+    <ClCompile Include="..\private\UI_Inven_Info_Number.cpp" />
+    <ClCompile Include="..\private\UI_Inven_Info_Text.cpp" />
+    <ClCompile Include="..\private\UI_Inven_Number_Bar.cpp" />
+    <ClCompile Include="..\Private\UI_Inven_TokenInfo.cpp" />
+    <ClCompile Include="..\Private\UI_Inven_Token_Icons.cpp" />
+    <ClCompile Include="..\Private\UI_Item.cpp" />
+    <ClCompile Include="..\Private\UI_Item_AFrame.cpp" />
+    <ClCompile Include="..\Private\UI_Item_Change_BG.cpp" />
+    <ClCompile Include="..\Private\UI_Item_Change_Frame.cpp" />
+    <ClCompile Include="..\Private\UI_Item_Change_Main.cpp" />
+    <ClCompile Include="..\Private\UI_Item_Damage.cpp" />
+    <ClCompile Include="..\Private\UI_Item_FunnyTip.cpp" />
+    <ClCompile Include="..\Private\UI_Item_M_Ability.cpp" />
+    <ClCompile Include="..\Private\UI_Item_Name.cpp" />
+    <ClCompile Include="..\Private\UI_Item_PerSec.cpp" />
+    <ClCompile Include="..\Private\UI_Item_Roma.cpp" />
+    <ClCompile Include="..\Private\UI_Item_Speed.cpp" />
+    <ClCompile Include="..\Private\UI_Item_S_Ability.cpp" />
+    <ClCompile Include="..\Private\UI_LeftBottom.cpp" />
+    <ClCompile Include="..\Private\UI_LeftTop.cpp" />
+    <ClCompile Include="..\Private\UI_LucidBar_BG.cpp" />
+    <ClCompile Include="..\Private\UI_LucidChange_BG.cpp" />
+    <ClCompile Include="..\Private\UI_LucidChange_BOX.cpp" />
+    <ClCompile Include="..\Private\UI_LucidChange_MBG.cpp" />
+    <ClCompile Include="..\Private\UI_MainAbility.cpp" />
+    <ClCompile Include="..\Private\UI_MainBar_BG.cpp" />
+    <ClCompile Include="..\Private\UI_MainInven.cpp" />
+    <ClCompile Include="..\Private\UI_Main_StageEnd.cpp" />
+    <ClCompile Include="..\Private\UI_MapHeader.cpp" />
+    <ClCompile Include="..\Private\UI_Maps.cpp" />
+    <ClCompile Include="..\Private\UI_Map_Bridge.cpp" />
+    <ClCompile Include="..\Private\UI_Map_MKey.cpp" />
+    <ClCompile Include="..\Private\UI_Map_Object.cpp" />
+    <ClCompile Include="..\Private\UI_Map_Select_Frame.cpp" />
+    <ClCompile Include="..\Private\UI_Minimap.cpp" />
+    <ClCompile Include="..\Private\UI_Moon.cpp" />
+    <ClCompile Include="..\Private\UI_PB_Back.cpp" />
+    <ClCompile Include="..\Private\UI_PlayButton.cpp" />
+    <ClCompile Include="..\Private\UI_Progress_BG.cpp" />
+    <ClCompile Include="..\Private\UI_Progress_Icon.cpp" />
+    <ClCompile Include="..\private\UI_Rebirth.cpp" />
+    <ClCompile Include="..\Private\UI_RecycleBar.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_BP.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_Continue.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_Continue_BG.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_LockIcon.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_RS_Text.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_Shururuk.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_StagePicture.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_TallSmokeSprite.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_Time_Tex.cpp" />
+    <ClCompile Include="..\Private\UI_StageEnd_UnLockSprite.cpp" />
+    <ClCompile Include="..\Private\UI_Stage_Percentage_Bar.cpp" />
+    <ClCompile Include="..\Private\UI_Stage_Percentage_Bar_BG.cpp" />
+    <ClCompile Include="..\Private\UI_Stage_SubText.cpp" />
+    <ClCompile Include="..\Private\UI_Stage_Text.cpp" />
+    <ClCompile Include="..\Private\UI_Stage_Text_RS.cpp" />
+    <ClCompile Include="..\Private\UI_Stage_Text_RS_BG.cpp" />
+    <ClCompile Include="..\Private\UI_SubAbility_Coltime.cpp" />
+    <ClCompile Include="..\Private\UI_S_SubAbility.cpp" />
+    <ClCompile Include="..\private\UI_Token.cpp" />
+    <ClCompile Include="..\Private\VSScreenImage.cpp" />
+    <ClCompile Include="..\Private\Watch_Effect.cpp" />
+    <ClCompile Include="..\Private\Water_Effect.cpp" />
+    <ClCompile Include="..\Private\Water_Line_Effect0.cpp" />
+    <ClCompile Include="..\Private\Water_Line_Effect1.cpp" />
+    <ClCompile Include="..\Private\Wave_Stone.cpp" />
+    <ClCompile Include="..\Private\Weapon.cpp" />
+    <ClCompile Include="..\Private\Terrain.cpp" />
+    <ClCompile Include="..\Private\UI.cpp" />
+    <ClCompile Include="..\Private\Weapon_Trail0.cpp" />
+    <ClCompile Include="..\Private\WhiteScreen.cpp" />
+    <ClCompile Include="..\Private\White_Rect.cpp" />
+    <ClCompile Include="..\Private\WingEffect.cpp" />
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Client.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxAnim.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxCube.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNLNAEms.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNonAnim.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNonAnimBlur.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxNorTex.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxInstance.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxTex.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxTexBlur.hlsl" />
+    <FxCompile Include="..\Bin\ShaderFiles\Shader_VtxTex_Che.hlsl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

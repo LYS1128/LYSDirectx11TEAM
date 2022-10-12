@@ -1,0 +1,183 @@
+#include "stdafx.h"
+#include "..\Public\Point_Effect2.h"
+#include "GameInstance.h"
+#include "Equipment_Manager.h"
+#include "Stage_Manager.h"
+#include "Time_Manager.h"
+
+CPoint_Effect2::CPoint_Effect2(ID3D11Device* pDeviceOut, ID3D11DeviceContext* pDeviceContextOut)
+	: CGameObject(pDeviceOut, pDeviceContextOut)
+{
+
+}
+
+CPoint_Effect2::CPoint_Effect2(const CPoint_Effect2 & rhs)
+	: CGameObject(rhs)
+{
+}
+
+HRESULT CPoint_Effect2::NativeConstruct_Prototype()
+{
+
+	if (FAILED(__super::NativeConstruct_Prototype()))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CPoint_Effect2::NativeConstruct(void * pArg)
+{
+	CTransform::TRANSFORMDESC		TransformDesc;
+	ZeroMemory(&TransformDesc, sizeof(CTransform::TRANSFORMDESC));
+
+	TransformDesc.SpeedPerSec = 5.0f;
+	TransformDesc.RotationPerSec = XMConvertToRadians(90.0f);
+
+	if (FAILED(__super::NativeConstruct(pArg, &TransformDesc)))
+		return E_FAIL;
+
+	if (FAILED(SetUp_Components()))
+		return E_FAIL;
+
+
+	m_iShaderIndex = 4;
+
+
+	return S_OK;
+}
+
+void CPoint_Effect2::Tick(_double TimeDelta)
+{
+	_double TimeRatio = CTime_Manager::Get_Instance()->Get_EctRatio();
+	_double mTimeDelta = TimeDelta * TimeRatio;
+	__super::Tick(mTimeDelta);
+
+	CGameInstance*		pGameInstance = GET_INSTANCE(CGameInstance);
+
+	_vector vPos = CStage_Manager::Get_Instance()->Get_TilePos();
+
+	m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPos);
+
+
+	RELEASE_INSTANCE(CGameInstance);
+
+	m_pVIBufferCom->Update(mTimeDelta);
+
+}
+
+void CPoint_Effect2::LateTick(_double TimeDelta)
+{
+	_double TimeRatio = CTime_Manager::Get_Instance()->Get_EctRatio();
+	_double mTimeDelta = TimeDelta * TimeRatio;
+	__super::LateTick(mTimeDelta);
+
+	if (CEquipment_Manager::Get_Instance()->Get_InvenCount() % 2 == 1)
+		m_iShaderIndex = 5;
+	else
+		m_iShaderIndex = 4;
+
+	if (nullptr != m_pRendererCom)
+		m_pRendererCom->Add_RenderGroup(CRenderer::GROUP_UI6, this);
+}
+
+HRESULT CPoint_Effect2::Render()
+{
+	if (nullptr == m_pShaderCom ||
+		nullptr == m_pVIBufferCom)
+		return E_FAIL;
+
+	if (FAILED(__super::Render()))
+		return E_FAIL;
+
+	if (FAILED(SetUp_ConstantTable()))
+		return E_FAIL;
+
+	m_pShaderCom->Begin(m_iShaderIndex);
+
+	m_pVIBufferCom->Render();
+
+	return S_OK;
+}
+
+HRESULT CPoint_Effect2::SetUp_Components()
+{
+	/* For.Com_Renderer */
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Renderer"), LEVEL_STATIC, TEXT("Prototype_Component_Renderer"), (CComponent**)&m_pRendererCom)))
+		return E_FAIL;
+
+	/* For.Com_Shader */
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Shader"), LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxInstance"), (CComponent**)&m_pShaderCom)))
+		return E_FAIL;
+
+	/* For.Com_Texture */
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Texture"), LEVEL_STATIC, TEXT("Prototype_Component_Texture_RealSnow3"), (CComponent**)&m_pTextureCom)))
+		return E_FAIL;
+
+	/* For.Com_VIBuffer */
+	if (FAILED(__super::SetUp_Components(TEXT("Com_VIBuffer"), LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_PointInstance2"), (CComponent**)&m_pVIBufferCom)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CPoint_Effect2::SetUp_ConstantTable()
+{
+	CGameInstance*		pGameInstance = GET_INSTANCE(CGameInstance);
+
+	if (FAILED(m_pTransformCom->Bind_WorldMatrixOnShader(m_pShaderCom, "g_WorldMatrix")))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Set_RawValue("g_ViewMatrix", &pGameInstance->Get_TransformFloat4x4_TP(CPipeLine::D3DTS_VIEW), sizeof(_float4x4))))
+		return E_FAIL;
+	if (FAILED(m_pShaderCom->Set_RawValue("g_ProjMatrix", &pGameInstance->Get_TransformFloat4x4_TP(CPipeLine::D3DTS_PROJ), sizeof(_float4x4))))
+		return E_FAIL;
+
+	if (FAILED(m_pShaderCom->Set_RawValue("g_vCamPosition", &pGameInstance->Get_CamPositionFloat4(), sizeof(_float4))))
+		return E_FAIL;
+
+	if (FAILED(m_pTextureCom->SetUp_ShaderResourceView(m_pShaderCom, "g_DiffuseTexture", 0)))
+		return E_FAIL;
+
+
+
+	RELEASE_INSTANCE(CGameInstance);
+
+	return S_OK;
+}
+
+CPoint_Effect2 * CPoint_Effect2::Create(ID3D11Device* pDeviceOut, ID3D11DeviceContext* pDeviceContextOut)
+{
+	CPoint_Effect2*	pInstance = new CPoint_Effect2(pDeviceOut, pDeviceContextOut);
+
+	if (FAILED(pInstance->NativeConstruct_Prototype()))
+	{
+		MSG_BOX(TEXT("Failed to Created CPoint_Effect2"));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+CGameObject * CPoint_Effect2::Clone(void * pArg)
+{
+	CPoint_Effect2*	pInstance = new CPoint_Effect2(*this);
+
+	if (FAILED(pInstance->NativeConstruct(pArg)))
+	{
+		MSG_BOX(TEXT("Failed to Created CPoint_Effect2"));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+void CPoint_Effect2::Free()
+{
+	__super::Free();
+
+	Safe_Release(m_pTextureCom);
+	Safe_Release(m_pShaderCom);
+	Safe_Release(m_pVIBufferCom);
+	Safe_Release(m_pRendererCom);
+
+}

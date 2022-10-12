@@ -1,0 +1,286 @@
+#include "stdafx.h"
+#include "Turret_Beam.h"
+#include "GameInstance.h"
+#include "Player.h"
+
+CTurret_Beam::CTurret_Beam(ID3D11Device* pDeviceOut, ID3D11DeviceContext* pDeviceContextOut)
+	: CEnemy(pDeviceOut, pDeviceContextOut)
+{
+
+}
+
+CTurret_Beam::CTurret_Beam(const CTurret_Beam & rhs)
+	: CEnemy(rhs)
+{
+}
+
+HRESULT CTurret_Beam::NativeConstruct_Prototype()
+{
+
+	if (FAILED(__super::NativeConstruct_Prototype()))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CTurret_Beam::NativeConstruct(void * pArg)
+{
+
+	if (FAILED(__super::NativeConstruct(pArg)))
+		return E_FAIL;
+
+	if (FAILED(SetUp_Components()))
+		return E_FAIL;	
+
+	m_pEnemyModelCom->Set_PreAnimIndex(IDLE);
+	m_pEnemyModelCom->Set_AnimationIndex(IDLE);
+	m_iAnimationIndex = IDLE;
+
+	Info.eMonsterType = TR_BEAM;
+	Info._iHp = 10;
+	Info._AttDmg = 3;
+	m_iAttackState = MONSTER_END;
+	iMaxBullet = 1;
+	CGameInstance*		pGameInstance = GET_INSTANCE(CGameInstance);
+	CTransform* Trans = (CTransform*)pGameInstance->Get_Component((_uint)CClient_Level_Manager::Get_Instance()->Get_Level(), L"Tile", m_pTransformTag, 5);
+	RELEASE_INSTANCE(CGameInstance);
+	if (Trans != nullptr) {
+		_float4 fPosi{};
+		_vector vPosi = Trans->Get_State(CTransform::STATE_POSITION);
+		XMStoreFloat4(&fPosi, vPosi);
+		fPosi.z -= 5.f;
+		vPosi = XMLoadFloat4(&fPosi);
+		m_pTransformCom->Set_State(CTransform::STATE_POSITION, vPosi);
+		m_iCurrentCellIndex = m_pTransformCom->Compute_CurrentIndex(m_pTransformCom->Get_State(CTransform::STATE_POSITION));
+	}
+	CMonster_Manager::Get_Instance()->Monster_Push(this, m_Number);
+	return S_OK;
+}
+
+void CTurret_Beam::Tick(_double TimeDelta)
+{
+	_double TimeRatio = CTime_Manager::Get_Instance()->Get_MonsterRatio();
+	_double mTimeDelta = TimeDelta * TimeRatio;
+	__super::Tick(mTimeDelta);
+	if (CStage_Manager::Get_Instance()->Get_TileIndex() != m_Number)
+		return;
+	Set_PlayerPosition();
+	m_pTransformCom->LookAt(vPlayerPos);
+	if (bFirstSpawn) {
+		if (!m_bSpawnEffect) {
+			m_bSpawnEffect = true;
+			CGameInstance* pGameInstance = GET_INSTANCE(CGameInstance);
+			if (FAILED(pGameInstance->Add_GameObjectToLayer(LEVEL_GAMEPLAY, L"Layer_Effect", TEXT("Prototype_GameObject_SpawnEffect"), &m_pTransformCom->Get_State(CTransform::STATE_POSITION))))
+				return;
+			RELEASE_INSTANCE(CGameInstance);
+		}
+		if (m_pEnemyModelCom->Get_Animation(IDLE)->Get_TimeAcc() > 10) {
+			bHavior = true;
+			bFirstSpawn = false;
+		}
+	}
+	if (bHavior) {
+		Colliding_Enemy(LEVEL_STATIC, L"Layer_Player", L"Com_AttSPHERE", 1);
+		Colliding_Enemy(LEVEL_STATIC, L"Layer_Kunai", L"Com_SPHERE", 2);
+		Colliding_Enemy(LEVEL_STATIC, L"Layer_Arrow", L"Com_SPHERE", 2);
+		Animation_State(mTimeDelta);
+		MotionControl();
+		Delay(mTimeDelta);
+		if (!bCol)
+			Searching_Player(mTimeDelta, 6.f, IDLE, IDLE, ATTACK);
+		
+	}
+	For_New_Matrix("Canter_Jnt");
+	
+	if (bAtt)
+		m_pAttackColiderOBBCom->Update(m_matTrans);
+	m_pBodyColliderSphereCom->Update(m_pTransformCom->Get_WorldMatrix());
+	m_pEnemyModelCom->Set_AnimationIndex(m_iAnimationIndex);
+	m_pEnemyModelCom->Update(mTimeDelta);
+
+}
+
+void CTurret_Beam::LateTick(_double TimeDelta)
+{
+	_double TimeRatio = CTime_Manager::Get_Instance()->Get_MonsterRatio();
+	_double mTimeDelta = TimeDelta * TimeRatio;
+	__super::LateTick(mTimeDelta);
+	CGameInstance*		pGameInstance = GET_INSTANCE(CGameInstance);
+
+	
+	if (nullptr != m_pRendererCom &&
+		true == pGameInstance->isInFrustum_WorldSpace(m_pTransformCom->Get_State(CTransform::STATE_POSITION), 3.f))
+	{
+		m_pRendererCom->Add_RenderGroup(CRenderer::GROUP_NONBLEND, this);
+#ifdef _DEBUG
+		m_pRendererCom->Add_DebugComponent(m_pBodyColliderSphereCom);
+		if (bAtt)
+			m_pRendererCom->Add_DebugComponent(m_pAttackColiderOBBCom);
+#endif // _DEBUG
+	}
+
+	RELEASE_INSTANCE(CGameInstance);
+}
+
+HRESULT CTurret_Beam::Render()
+{
+	if (nullptr == m_pShaderCom || 
+		nullptr == m_pEnemyModelCom)
+		return E_FAIL;
+
+	if (FAILED(__super::Render()))
+		return E_FAIL;
+
+	if (FAILED(SetUp_ConstantTable()))
+		return E_FAIL;
+
+
+	_uint		iNumMeshContainers = m_pEnemyModelCom->Get_NumMeshContainer();
+
+	for (_uint i = 0; i < iNumMeshContainers; ++i)
+	{
+		if (FAILED(m_pEnemyModelCom->Bind_Material_OnShader(m_pShaderCom, aiTextureType_DIFFUSE, "g_DiffuseTexture", i)))
+			return E_FAIL;
+
+
+		if (FAILED(m_pEnemyModelCom->Render(m_pShaderCom, "g_BoneMatrices", i, 0)))
+			return E_FAIL;
+	}	
+
+#ifdef _DEBUG
+	m_pRendererCom->Add_DebugComponent(m_pBodyColliderSphereCom);
+	//if (bAtt)
+	m_pRendererCom->Add_DebugComponent(m_pAttackColiderOBBCom);
+#endif // _DEBUG
+
+	
+
+	return S_OK;
+}
+
+void CTurret_Beam::For_New_Matrix(const char * pNodeName)
+{
+	pivot = m_pEnemyModelCom->Get_PivotMatrix();
+	socket = m_pEnemyModelCom->Get_CombinedTransformationMatrix(pNodeName);
+	BoneMatrix = XMLoadFloat4x4(socket);
+	m_matTrans = BoneMatrix * XMLoadFloat4x4(&pivot) * m_pTransformCom->Get_WorldMatrix();
+}
+
+void CTurret_Beam::MotionControl()
+{
+	if (m_pEnemyModelCom->Get_Animation(m_iAnimationIndex)->Get_KeyFrameENd()) {
+		if (m_iAnimationIndex == ATTACK)
+			bDelay = true;
+
+		Info.m_HitCount = 0;
+		bCol = false;
+		bLookChase = true;
+		m_pEnemyModelCom->Set_Speed(1.f);
+	}
+}
+
+void CTurret_Beam::Animation_State(_double TimeDelta)
+{
+	switch (m_iAnimationIndex)
+	{
+	case IDLE:
+		break;
+	case ATTACK:
+		bLookChase = false;
+		if (m_pEnemyModelCom->Get_Animation(ATTACK)->Get_TimeAcc() > 32.0 && m_pEnemyModelCom->Get_Animation(ATTACK)->Get_TimeAcc() < 61.0)
+			bAtt = true;
+		else
+			bAtt = false;
+		break;
+	default:
+		break;
+	}
+}
+
+HRESULT CTurret_Beam::SetUp_Components()
+{
+	/* For.Com_Renderer */
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Renderer"), LEVEL_STATIC, TEXT("Prototype_Component_Renderer"), (CComponent**)&m_pRendererCom)))
+		return E_FAIL;
+
+	/* For.Com_Shader */
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Shader"), LEVEL_STATIC, TEXT("Prototype_Component_Shader_VtxAnim"), (CComponent**)&m_pShaderCom)))
+		return E_FAIL;
+
+	/* For.Com_Model */
+	if (FAILED(__super::SetUp_Components(TEXT("Com_Model"), LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Enemies_Turret_Beam"), (CComponent**)&m_pEnemyModelCom)))
+		return E_FAIL;
+
+	
+	CCollider::COLLIDERDESC			ColliderDesc;
+	ZeroMemory(&ColliderDesc, sizeof(CCollider::COLLIDERDESC));
+
+	/* For.Com_SPHERE */
+	ColliderDesc.vPosition = _float3(0.f, 1.0f, 0.f);
+	ColliderDesc.fRadius = 1.f;
+	if (FAILED(__super::SetUp_Components(TEXT("Com_SPHERE"), LEVEL_STATIC, TEXT("Prototype_Component_Collider_SPHERE"), (CComponent**)&m_pBodyColliderSphereCom, &ColliderDesc)))
+		return E_FAIL;
+	
+	/* For.Com_OBB */
+	/*_float3 Pos;
+	XMStoreFloat3(&Pos, m_pTransformCom->Get_State(CTransform::STATE_LOOK) + XMVectorSet(0.f, 4.f, 0.f, 0.f));*/
+	ColliderDesc.vPosition = _float3(0.f, 4.f, 0.f);
+	ColliderDesc.vSize = _float3(1.0f, 8.0f,1.0f);
+	if (FAILED(__super::SetUp_Components(TEXT("Com_OBB"), LEVEL_STATIC, TEXT("Prototype_Component_Collider_OBB"), (CComponent**)&m_pAttackColiderOBBCom, &ColliderDesc)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT CTurret_Beam::SetUp_ConstantTable()
+{
+	CGameInstance*		pGameInstance = GET_INSTANCE(CGameInstance);
+
+	if (FAILED(m_pTransformCom->Bind_WorldMatrixOnShader(m_pShaderCom, "g_WorldMatrix")))
+		return E_FAIL;
+	
+	if (FAILED(m_pShaderCom->Set_RawValue("g_ViewMatrix", &pGameInstance->Get_TransformFloat4x4_TP(CPipeLine::D3DTS_VIEW), sizeof(_float4x4))))
+		return E_FAIL;
+	if (FAILED(m_pShaderCom->Set_RawValue("g_ProjMatrix", &pGameInstance->Get_TransformFloat4x4_TP(CPipeLine::D3DTS_PROJ), sizeof(_float4x4))))
+		return E_FAIL;		
+
+	RELEASE_INSTANCE(CGameInstance);
+
+	return S_OK;
+}
+
+CTurret_Beam * CTurret_Beam::Create(ID3D11Device* pDeviceOut, ID3D11DeviceContext* pDeviceContextOut)
+{
+	CTurret_Beam*	pInstance = new CTurret_Beam(pDeviceOut, pDeviceContextOut);
+
+	if (FAILED(pInstance->NativeConstruct_Prototype()))
+	{
+		MSG_BOX(TEXT("Failed to Created CTurret_Beam"));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+CGameObject * CTurret_Beam::Clone(void * pArg)
+{
+	CTurret_Beam*	pInstance = new CTurret_Beam(*this);
+
+	if (FAILED(pInstance->NativeConstruct(pArg)))
+	{
+		MSG_BOX(TEXT("Failed to Created CTurret_Beam"));
+		Safe_Release(pInstance);
+	}
+
+	return pInstance;
+}
+
+void CTurret_Beam::Free()
+{
+	__super::Free();
+	Safe_Release(m_pBodyColliderSphereCom);
+	Safe_Release(m_pShaderCom);
+	Safe_Release(m_pEnemyModelCom);
+	Safe_Release(m_pRendererCom);
+
+}
